@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    <title>Prediction Assurance</title>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-12 col-md-10 col-lg-7">
+                <div class="card shadow-lg main-card">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="text-center mb-4">Prediction de la charge d'Assurance</h2>
+                        <form action="{{ url_for('predict') }}"method="POST">
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="text" class="form-control" name="age" id="age"
+                                placeholder="Ex.: 25" required>  
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="sexe" class="form-label">Sexe</label>
+                                <select class="form-select" name="sexe"required>
+                                    <option value="" selected disabled>Choisir</option>
+                                    <option value="0">Féminin</option>
+                                    <option value="1">Masculin</option>
+                                </select>
+                            </div>
+                             <div class="mb-3">
+                                <label for="bmi" class="form-label">BMI</label>
+                                <input type="text" class="form-control" name="bmi" id="bmi"
+                                placeholder="Ex.: 168.6" required>    </div>
+
+                             <div class="mb-3">
+                                <label for="enfant" class="form-label">Nombre d'enfants</label>
+                                <input type="text" class="form-control" name="enfant" id="enfant"
+                                placeholder="Ex.: 2" required>  
+                            </div>
+                            <div class="row">
+                                  <div class="col-12 col-md-6 mb-3">
+                                <label for="smoker" class="form-label">Fumeur</label>
+                                <select class="form-select" name="smoker"required>
+                                    <option value="" selected disabled>Choisir</option>
+                                    <option value="0">Non</option>
+                                    <option value="1">Oui</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="region" class="form-label">Region</label>
+                                <select class="form-select" name="region"required>
+                                    <option value="" selected disabled>Choisir</option>
+                                    <option value="1">Southwest</option>
+                                    <option value="2">Southeast</option>
+                                    <option value="3">Northwest</option>
+                                    <option value="4">Northeast</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">PREDIRE</button>
+                            </div>
+                        </form>
+                        {% if prediction_text %}
+                            <div class="alert alert-success mt-4 text-center result-box">
+                                {{ prediction_text }}
+                             </div>  
+                        {% endif %}
+                    </div></div></div></div></div>
+</body>
+</html>
